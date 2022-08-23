@@ -190,7 +190,7 @@ namespace electrodeGUI {
 
 
 
-	private: System::Windows::Forms::FlowLayoutPanel^ E_19;
+	private: System::Windows::Forms::FlowLayoutPanel^ E19;
 	private: System::Windows::Forms::RadioButton^ E19_A;
 	private: System::Windows::Forms::RadioButton^ E19_B;
 	private: System::Windows::Forms::RadioButton^ E19_OFF;
@@ -367,7 +367,7 @@ namespace electrodeGUI {
 			this->E18_A = (gcnew System::Windows::Forms::RadioButton());
 			this->E18_B = (gcnew System::Windows::Forms::RadioButton());
 			this->E18_OFF = (gcnew System::Windows::Forms::RadioButton());
-			this->E_19 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->E19 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->E19_A = (gcnew System::Windows::Forms::RadioButton());
 			this->E19_B = (gcnew System::Windows::Forms::RadioButton());
 			this->E19_OFF = (gcnew System::Windows::Forms::RadioButton());
@@ -434,7 +434,7 @@ namespace electrodeGUI {
 			this->E16->SuspendLayout();
 			this->E17->SuspendLayout();
 			this->E18->SuspendLayout();
-			this->E_19->SuspendLayout();
+			this->E19->SuspendLayout();
 			this->E20->SuspendLayout();
 			this->E21->SuspendLayout();
 			this->E22->SuspendLayout();
@@ -1327,16 +1327,16 @@ namespace electrodeGUI {
 			// 
 			// electrode_19
 			// 
-			this->E_19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+			this->E19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
 				static_cast<System::Int32>(static_cast<System::Byte>(128)));
-			this->E_19->Controls->Add(this->E19_A);
-			this->E_19->Controls->Add(this->E19_B);
-			this->E_19->Controls->Add(this->E19_OFF);
-			this->E_19->Location = System::Drawing::Point(173, 402);
-			this->E_19->Name = L"E19";
-			this->E_19->Padding = System::Windows::Forms::Padding(10);
-			this->E_19->Size = System::Drawing::Size(79, 94);
-			this->E_19->TabIndex = 3;
+			this->E19->Controls->Add(this->E19_A);
+			this->E19->Controls->Add(this->E19_B);
+			this->E19->Controls->Add(this->E19_OFF);
+			this->E19->Location = System::Drawing::Point(173, 402);
+			this->E19->Name = L"E19";
+			this->E19->Padding = System::Windows::Forms::Padding(10);
+			this->E19->Size = System::Drawing::Size(79, 94);
+			this->E19->TabIndex = 3;
 			// 
 			// electrode_19_A
 			// 
@@ -1885,7 +1885,7 @@ namespace electrodeGUI {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
-			this->ClientSize = System::Drawing::Size(637, 749);
+			this->ClientSize = System::Drawing::Size(720, 900);
 			this->Controls->Add(this->btnMax);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->amplitudeInput);
@@ -1911,7 +1911,7 @@ namespace electrodeGUI {
 			this->Controls->Add(this->E16);
 			this->Controls->Add(this->E17);
 			this->Controls->Add(this->E18);
-			this->Controls->Add(this->E_19);
+			this->Controls->Add(this->E19);
 			this->Controls->Add(this->E20);
 			this->Controls->Add(this->E21);
 			this->Controls->Add(this->E22);
@@ -1921,8 +1921,8 @@ namespace electrodeGUI {
 			this->Controls->Add(this->E26);
 			this->Controls->Add(this->E27);
 			this->Controls->Add(this->E28);
-			this->Name = L"GUI";
-			this->Text = L"GUI";
+			this->Name = L"FES";
+			this->Text = L"FES";
 			this->E1->ResumeLayout(false);
 			this->E1->PerformLayout();
 			this->E2->ResumeLayout(false);
@@ -1959,8 +1959,8 @@ namespace electrodeGUI {
 			this->E17->PerformLayout();
 			this->E18->ResumeLayout(false);
 			this->E18->PerformLayout();
-			this->E_19->ResumeLayout(false);
-			this->E_19->PerformLayout();
+			this->E19->ResumeLayout(false);
+			this->E19->PerformLayout();
 			this->E20->ResumeLayout(false);
 			this->E20->PerformLayout();
 			this->E21->ResumeLayout(false);
@@ -2277,17 +2277,17 @@ namespace electrodeGUI {
 		   //======================= ELECTRODE 19 ==================//
 	private: System::Void electrode_19_A_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (E19_A->Checked) {
-			E_19->BackColor = System::Drawing::Color::GreenYellow;
+			E19->BackColor = System::Drawing::Color::GreenYellow;
 		}
 	}
 	private: System::Void electrode_19_B_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (E19_B->Checked) {
-			E_19->BackColor = System::Drawing::Color::PowderBlue;
+			E19->BackColor = System::Drawing::Color::PowderBlue;
 		}
 	}
 	private: System::Void electrode_19_off_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (E19_OFF->Checked) {
-			E_19->BackColor = System::Drawing::Color::FromArgb(255, 255, 128);
+			E19->BackColor = System::Drawing::Color::FromArgb(255, 255, 128);
 		}
 	}
 		   //======================= ELECTRODE 20 ==================//
@@ -2832,16 +2832,16 @@ namespace electrodeGUI {
 					if (front == "A")
 					{
 						E19_A->Checked = true;
-						E_19->BackColor = System::Drawing::Color::GreenYellow;
+						E19->BackColor = System::Drawing::Color::GreenYellow;
 					}
 					else if (front == "B")
 					{
 						E19_B->Checked = true;
-						E_19->BackColor = System::Drawing::Color::PowderBlue;
+						E19->BackColor = System::Drawing::Color::PowderBlue;
 					}
 					else {
 						E19_OFF->Checked = true;
-						E_19->BackColor = System::Drawing::Color::FromArgb(255, 255, 128);
+						E19->BackColor = System::Drawing::Color::FromArgb(255, 255, 128);
 					}
 				}
 
