@@ -65,7 +65,7 @@ double SUPPLY_VOLTAGE = 5;
 
 //flex sensor
 int flexPin = 1;
-const float R_DIV = 20000.0;
+const float R_DIV = 13000.0;
 const float STRAIGHT_RESISTANCE = 12000.0;
 const float BEND_RESISTANCE = 30000.0;
 
@@ -84,7 +84,7 @@ bool isADConnected()
 		printf("\n");
 		printf("Press any key to exit.");
 
-		getchar();	
+		_getch();	
 		return 0;
 	}
 	else {
@@ -257,12 +257,12 @@ void gatherFlexdata() {
 
 	value = read_Flexsensor(flexPin);
 
-	float flexR = R_DIV * (SUPPLY_VOLTAGE / value - 1.0);
-	printf("Resistance: %f\n", flexR);
+	float flexR = R_DIV * ((SUPPLY_VOLTAGE / value) - 1.0);
+	printf("Voltage: %0.2f\n", value);
 
-	float angle = map(flexR, STRAIGHT_RESISTANCE, BEND_RESISTANCE, 0, 90.0);
+	/*float angle = map(flexR, STRAIGHT_RESISTANCE, BEND_RESISTANCE, 0, 90.0);
 
-	cout << "Bend:" << angle << "degrees" << endl;
+	cout << "Bend:" << angle << "degrees" << endl;*/
 
 	Wait(1);
 }
@@ -380,7 +380,7 @@ void ad2Exit(void)
 {
 	
 	printf("Exiting... press Enter to continue.");
-	getchar();
+	_getch();
 	FDwfDeviceClose(hdwf);
 }
 
@@ -453,10 +453,10 @@ int main(int carg, char **szarg) {
 		//swSend(0x0, OLATA, ~0x81);
 		//swSend(0x0, OLATB, 0x80);
 
-		std::cout << "Input Amplitude: ";
+		/*std::cout << "Input Amplitude: ";
 		cin >> vAmp;
 		std::cout << "Modulating " << vAmp << " Volts..." << endl;
-		modulate(vAmp);
+		modulate(vAmp);*/
 		
 		Sleep(1);
 
@@ -464,59 +464,54 @@ int main(int carg, char **szarg) {
 	
 		for (i = 0; i < 10000; i++) {
 			//test flex sensor
-			//gatherFlexdata();
+			//gatherFlexdata();				//flex sensor testing
 			
-			//SPIdriver(i % 256);
 			potSend(i % 256);
-			printf("%d\n", i % 256);
-			//if ((i % 256) == 0) {
-			//	toggle = 1 - toggle;
-			//
-			//	if (toggle) {
-			//		E_OFF(B, E3 | E7);
-			//		E_OFF(A, E4 | E7);
+			/*printf("%d\n", i % 256);*/
+			if ((i % 256) == 0) {
+				toggle = 1 - toggle;
+			
+				if (toggle) {
+					E_OFF(B, E2 | E6);
+					E_OFF(A, E5 | E7);
 
-			//		E_SEL(C, E2, E3);
-			//		E_SEL(C, E6, E7);
-			//		E_SEL(A, E5, E6);
-			//		
-			//		E_ON(C, (E2 | E3));
-			//		E_ON(C, (E6 | E7));
-			//		E_ON(A, (E5 | E6));
+					gatherFlexdata();
+					E_SEL(C, E1, E5);
+					E_SEL(A, E4, E6);
+					
+					E_ON(C, (E1 | E5));
+					E_ON(A, (E4 | E6));
 
-			//		cout << "Stimulating" << endl;
-			//		cout << "E2 and E3 on 0X00 pair." << endl;
-			//		cout << "E5 and E6 on 0X01 pair." << endl;
+					cout << "Stimulating" << endl;
+					cout << "E2 and E3 on 0X00 pair." << endl;
+					cout << "E5 and E7 offset 0X01 pair." << endl;
 
 
-			//	}
-			//	else {
+				}
+				else if(!toggle && ) {
 
-			//		E_OFF(C, (E2 | E3));
-			//		E_OFF(C, (E6 | E7));
-			//		E_OFF(A, (E5 | E6));
+					E_OFF(C, (E1 | E5));
+					E_OFF(A, (E4 | E6));
 
-			//		E_SEL(B, E0, E1);
-			//		E_SEL(B, E4, E5);
-			//		E_SEL(A, E4, E7);
+					E_SEL(B, E2, E6);
+					E_SEL(A, E5, E7);
 
-			//		E_ON(B, (E3 | E7));
-			//		E_ON(B, (E4 | E5));
-			//		E_ON(A, (E4 | E7));
-			//	
-			//		cout << "Stimulating" << endl;
-			//		cout << "E3 and E7 0X02 pair." << endl;
-			//		cout << "E4 and E7 0X01 pair." << endl;
-			//	
-			//	}
+					E_ON(B, (E2 | E6));
+					E_ON(A, (E5 | E7));
+				
+					cout << "Stimulating" << endl;
+					cout << "E0 and E1 on 0X02 pair." << endl;
+					cout << "E4 and E6 offset 0X01 pair." << endl;
+				
+				}
 
-			//}
+			}
 			
 
 
 			if (_kbhit() != 0)
 				break;
-			Wait(0.0025);
+			Wait(0.0025/2);
 
 		}	
 	}
